@@ -73,6 +73,7 @@ export default function Banner() {
             width="640"
             height="360"
             src={`https://www.youtube.com/embed/${movie.videos.results[0].key}?controls=0&autoplay=1&loop=1&playlist=${movie.videos.results[0].key}`}
+            title="YouTube video player"
             frameborder="0"
             allow="autoplay; fullscreen"
             allowfullscreen
@@ -103,11 +104,11 @@ const Iframe = styled.iframe`
   z-index: -1;
   opacity: 0.65;
   border: none;
-
   &::after {
     content: "";
     position: absolute;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
   }
