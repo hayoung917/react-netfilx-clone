@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
 import { useDebounce } from "../../hooks/useDebounce";
 import "./SearchPage.css";
 
 export default function SearchPage() {
+  const navigate = useNavigate();
   const [searchResults, setSearchResults] = useState([]);
 
   const useQuery = () => {
@@ -51,7 +52,10 @@ export default function SearchPage() {
               "https://image.tmdb.org/t/p/w500" + movie.backdrop_path;
             return (
               <div className="movie" key={movie.id}>
-                <div className="movie__column-poster">
+                <div
+                  onClick={() => navigate(`/${movie.id}`)}
+                  className="movie__column-poster"
+                >
                   <img
                     src={movieImageUrl}
                     alt="movie"
@@ -66,7 +70,9 @@ export default function SearchPage() {
     ) : (
       <section className="no-results">
         <div className="no-results__text">
-          <p>찾고자하는 검색어 "{searchTerm}"에 맞는 영화가 없습니다.</p>
+          <p>
+            찾고자하는 검색어 "{debouncedSearchTerm}"에 맞는 영화가 없습니다.
+          </p>
           {/* <p>찾고자하는 검색어 "{searchTerm}"에 맞는 영화가 없습니다.</p> */}
         </div>
       </section>
