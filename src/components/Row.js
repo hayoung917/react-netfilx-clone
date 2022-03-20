@@ -1,12 +1,16 @@
 import axios from "../api/axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Row.css";
 import MovieModal from "./MovieModal";
+import { useOnClickOutside } from "../hooks/useOnClickOutside";
 
 export default function Row({ isLargeRow, title, fetchUrl, id }) {
+  const modalRef  = useRef();
   const [movies, setMovies] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [movieSelected, setMovieSelected] = useState({});
+
+  useOnClickOutside(modalRef, () => setModalOpen(false));
 
   useEffect(() => {
     fetchMovieData();
@@ -64,7 +68,7 @@ export default function Row({ isLargeRow, title, fetchUrl, id }) {
       </div>
 
       {modalOpen && (
-        <MovieModal {...movieSelected} setModalOpen={setModalOpen} />
+        <MovieModal {...movieSelected} setModalOpen={setModalOpen} modalRef={modalRef}/>
       )}
     </section>
   );

@@ -1,4 +1,3 @@
-import React from "react";
 import "./MovieModal.css";
 
 function MovieModal({
@@ -10,11 +9,12 @@ function MovieModal({
   frist_air_date,
   vote_average,
   setModalOpen,
+  modalRef,
 }) {
   return (
     <div className="presentation">
       <div className="wrapper-modal">
-        <div className="modal">
+        <div className="modal" ref={modalRef}>
           <span onClick={() => setModalOpen(false)} className="modal-close">
             X
           </span>
@@ -26,7 +26,9 @@ function MovieModal({
           />
           <div className="modal__content">
             <p className="madal_details">
-              <span className="modal__user_perc">{Math.floor(Math.random() * (101))}% for you </span>
+              <span className="modal__user_perc">
+                {Math.floor(Math.random() * 101)}% for you{" "}
+              </span>
               {release_date ? release_date : frist_air_date}
             </p>
             <h2 className="modal__title">{title ? title : name}</h2>
