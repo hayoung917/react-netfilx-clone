@@ -27,13 +27,18 @@ export default function Nav() {
     navigate(`/search?q=${e.target.value}`);
   };
 
+  const handleRefresh = () => {
+    setSearchValue("");
+    navigate(`/`)
+  };
+
   return (
     <nav className={`nav ${show && "nav__black"}`}>
       <img
         alt="Netfilx logo"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/170px-Netflix_2015_logo.svg.png"
         className="nav__logo"
-        onClick={() => window.location.reload()}
+        onClick={handleRefresh}
       />
 
       <input
