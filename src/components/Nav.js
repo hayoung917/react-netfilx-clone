@@ -29,7 +29,8 @@ export default function Nav() {
 
   const handleRefresh = () => {
     setSearchValue("");
-    navigate(`/`)
+    navigate(`/`);
+    window.location.reload();
   };
 
   return (
